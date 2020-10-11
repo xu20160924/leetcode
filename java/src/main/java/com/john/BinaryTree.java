@@ -1,7 +1,6 @@
 package com.john;
 
 import com.entity.TreeNode;
-import sun.reflect.generics.tree.ReturnType;
 
 import java.util.LinkedList;
 import java.util.Queue;

@@ -2,7 +2,6 @@ package com.john;
 
 import com.entity.ListNode;
 import com.entity.TreeNode;
-import com.sun.org.apache.xerces.internal.util.XMLInputSourceAdaptor;
 
 import java.util.*;
 import java.util.LinkedList;

@@ -1,6 +1,5 @@
 package com.john;
 
-import com.sun.corba.se.impl.ior.iiop.MaxStreamFormatVersionComponentImpl;
 
 /**
  * @author: John

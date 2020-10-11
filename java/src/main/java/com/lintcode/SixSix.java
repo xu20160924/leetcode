@@ -1,11 +1,9 @@
 package com.lintcode;
 
 import com.entity.TreeNode;
-import org.omg.CORBA.INTERNAL;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * @author: John

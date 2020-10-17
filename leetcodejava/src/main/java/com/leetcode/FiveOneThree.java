@@ -22,7 +22,7 @@ public class FiveOneThree {
 
         depth = depth + 1;
         maxDepth = Math.max(depth, maxDepth);
-        helper(root.left, depth, true);
+        helper(root.left, depth,true);
         helper(root.right, depth, false);
         if (isLeft && depth >= maxDepth) {
             maxLeft = root.val;
@@ -69,6 +69,5 @@ public class FiveOneThree {
         TreeNode root = new TreeNode(1);
         FiveOneThree fiveOneThree = new FiveOneThree();
         System.out.println(fiveOneThree.findBottomLeftValue(root));
-
     }
 }

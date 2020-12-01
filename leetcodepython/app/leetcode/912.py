@@ -1,6 +1,3 @@
-import random
-
-
 class Solution:
     def bubbleSort(self, nums):
         n = len(nums)
@@ -93,35 +90,9 @@ class Solution:
             nums[i], nums[0] = nums[0], nums[i]
             heapify(nums, i, 0)
 
-    # def sortArray(self, nums):
-    #     nodes = [Node(n) for n in nums]
-    #     return [node.val for node in sorted(nodes)]
-
     def sortArray(self, nums):
-        self.randomized_quicksort(nums, 0, len(nums) - 1)
-        return nums
-
-    ''' quick sort'''
-    def randomized_partition(self, nums, l, r):
-        pivot = random.randint(l, r)
-        nums[pivot], nums[r] = nums[r], nums[pivot]
-        i = l - 1
-        for j in range(l, r):
-            if nums[j] < nums[r]:
-                i += 1
-                nums[j], nums[i] = nums[i], nums[j]
-        i += 1
-        nums[i], nums[r] = nums[r], nums[i]
-        return i
-
-    def randomized_quicksort(self, nums, l, r):
-        if r - l <= 0:
-            return
-        mid = self.randomized_partition(nums, l, r)
-        self.randomized_quicksort(nums, l, mid - 1)
-        self.randomized_quicksort(nums, mid + 1, r)
-
-
+        nodes = [Node(n) for n in nums]
+        return [node.val for node in sorted(nodes)]
 
 class Node:
     def __init__(self, val):
@@ -149,4 +120,4 @@ class Node:
 
 if __name__ == '__main__':
     solution = Solution()
-    solution.sortArray([5, 2, 3, 1])
+    solution.selectionSort([5, 2, 3, 1])

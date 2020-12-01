@@ -47,17 +47,38 @@ public class OneNineEight {
 //        return result;
 //    }
 
+//    public int rob(int[] nums) {
+//        if (nums.length == 0) {
+//            return 0;
+//        }
+//        int[] memo = new int[nums.length + 1];
+//        memo[0] = 0;
+//        memo[1] = nums[0];
+//        for (int i = 1; i < nums.length; i++) {
+//           int val = nums[i];
+//           memo[i + 1] = Math.max(memo[i], memo[i - 1] + val);
+//        }
+//        return memo[nums.length];
+//    }
+
     public int rob(int[] nums) {
         if (nums.length == 0) {
             return 0;
         }
-        int[] memo = new int[nums.length + 1];
-        memo[0] = 0;
-        memo[1] = nums[0];
-        for (int i = 1; i < nums.length; i++) {
-           int val = nums[i];
-           memo[i + 1] = Math.max(memo[i], memo[i - 1] + val);
+        int prev1 = 0;
+        int prev2 = 0;
+        for (int num : nums) {
+            int tmp = prev1;
+            prev1 = Math.max(prev2 + num, prev1);
+            prev2 = tmp;
         }
-        return memo[nums.length];
+        return prev1;
+    }
+
+
+    public static void main(String[] args) {
+        int[] num = {1, 2, 3, 1};
+        OneNineEight oneNineEight = new OneNineEight();
+        oneNineEight.rob(num);
     }
 }

@@ -4,6 +4,7 @@ import com.entity.ListNode;
 import com.entity.TreeNode;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -78,55 +79,156 @@ public class NineFive {
 //        return dp[num];
 //    }
 
-    private TreeNode treeCopy(TreeNode root) {
-        if (root == null) {
-            return root;
-        }
-        TreeNode newRoot = new TreeNode(root.val);
-        newRoot.left = treeCopy(root.left);
-        newRoot.right = treeCopy(root.right);
-        return newRoot;
-    }
+//    private TreeNode treeCopy(TreeNode root) {
+//        if (root == null) {
+//            return root;
+//        }
+//        TreeNode newRoot = new TreeNode(root.val);
+//        newRoot.left = treeCopy(root.left);
+//        newRoot.right = treeCopy(root.right);
+//        return newRoot;
+//    }
+//
+//    public List<TreeNode> generateTrees(int n) {
+//        List<TreeNode> pre = new ArrayList<>();
+//        if (n == 0) {
+//            return pre;
+//        }
+//        pre.add(null);
+//        for (int i = 1; i <= n; i++) {
+//            List<TreeNode> cur = new ArrayList<>();
+//            for (TreeNode root : pre) {
+//                TreeNode insert = new TreeNode(i);
+//                insert.left = root;
+//                cur.add(insert);
+//                for (int j = 0; j <= n; j++) {
+//                    TreeNode root_copy = treeCopy(root);
+//                    TreeNode right = root_copy;
+//                    int k = 0;
+//                    for (; k < j; k++) {
+//                        if (right == null) {
+//                            break;
+//                        }
+//                        right = right.right;
+//                    }
+//                    if (right == null) {
+//                        break;
+//                    }
+//                    TreeNode rightTree = right.right;
+//                    insert = new TreeNode(i);
+//                    right.right = insert;
+//                    insert.left = rightTree;
+//                    cur.add(root_copy);
+//                }
+//            }
+//            pre = cur;
+//        }
+//        return pre;
+//    }
+
+//    public List<TreeNode> generateTrees(int n) {
+//        if (n == 0) {
+//            return new ArrayList<>();
+//        }
+//        return helper(1, n);
+//    }
+//
+//
+//    private List<TreeNode> helper(int start, int end) {
+//        List<TreeNode> list = new ArrayList<>();
+//
+//        if (start > end) {
+//            list.add(null);
+//            return list;
+//        }
+//        if (start == end) {
+//           list.add(new TreeNode(start));
+//           return list;
+//        }
+//        List<TreeNode> left, right;
+//        for (int i = start; i <= end; i++) {
+//            left = helper(start, i - 1);
+//            right = helper(i + 1, end);
+//            for (TreeNode lnode : left) {
+//                for (TreeNode rnode : right) {
+//                    TreeNode root = new TreeNode(i);
+//                    root.left = lnode;
+//                    root.right = rnode;
+//                    list.add(root);
+//                }
+//            }
+//        }
+//       return list;
+//    }
+
+//    public List<TreeNode> generateTrees(int n) {
+//        List<TreeNode>[] result = new ArrayList[n + 1];
+//        result[0] = new ArrayList<>();
+//
+//        if (n == 0) {
+//            return result[0];
+//        }
+//        result[0].add(null);
+//        for (int i = 1; i <= n; i++) {
+//            result[n] = new ArrayList<>();
+//            for (int j = 0; j < i; j++) {
+//                for (TreeNode lNode : result[i]) {
+//                    for (TreeNode rNode : result[i - j - 1]) {
+//                        TreeNode root = new TreeNode(j + 1);
+//                        root.left = lNode;
+//                        root.right = rNode;
+//
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     public List<TreeNode> generateTrees(int n) {
-        List<TreeNode> pre = new ArrayList<>();
         if (n == 0) {
-            return pre;
+            return new ArrayList<>();
         }
-        pre.add(null);
-        for (int i = 1; i <= n; i++) {
-            List<TreeNode> cur = new ArrayList<>();
-            for (TreeNode root : pre) {
-                TreeNode insert = new TreeNode(i);
-                insert.left = root;
-                cur.add(insert);
-                for (int j = 0; j <= n; j++) {
-                    TreeNode root_copy = treeCopy(root);
-                    TreeNode right = root_copy;
-                    int k = 0;
-                    for (; k < j; k++) {
-                        if (right == null) {
-                            break;
-                        }
-                        right = right.right;
-                    }
-                    if (right == null) {
-                        break;
-                    }
-                    TreeNode rightTree = right.right;
-                    insert = new TreeNode(i);
-                    right.right = insert;
-                    insert.left = rightTree;
-                    cur.add(root_copy);
+        return helper(1, n);
+    }
+
+    private List<TreeNode> helper(int start, int end) {
+        List<TreeNode> list = new ArrayList<>();
+        if (start > end) {
+            list.add(null);
+        }
+        for (int i = start; i <= end; i++) {
+            for (TreeNode lNode : helper(start, i - 1)) {
+                for (TreeNode rNode : helper(i + 1, end)) {
+                    TreeNode root = new TreeNode(i);
+                    root.left = lNode;
+                    root.right = rNode;
+                    list.add(root);
                 }
             }
-            pre = cur;
         }
-        return pre;
+        return list;
+    }
+
+
+    private TreeNode clone(TreeNode n, int offset) {
+        if (n == null) {
+            return null;
+        }
+        TreeNode root = new TreeNode(n.val + offset);
+        root.left = clone(n.left, offset);
+        root.right = clone(n.right, offset);
+        return root;
     }
 
     public static void main(String[] args) {
-        NineFive nineFive = new NineFive();
-        nineFive.generateTrees(3);
+        try {
+            Date[] date = null;
+            if (date != null && date[0] != null && date[1] != null) {
+                System.out.println("");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 }

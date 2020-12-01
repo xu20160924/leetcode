@@ -78,20 +78,33 @@ public class Three {
 //        return ans;
 //    }
 
+//    public static int lengthOfLongestSubstring(String s) {
+//        int n = s.length(), ans = 0;
+//        // current index of character
+//        int[] index = new int[128];
+//        for (int j = 0, i = 0; j < n; j++) {
+//            i = Math.max(index[s.charAt(j)], i);
+//            ans = Math.max(ans, j -i + 1);
+//            index[s.charAt(j)] = j + 1;
+//        }
+//        return ans;
+//    }
+
+
     public static int lengthOfLongestSubstring(String s) {
         int n = s.length(), ans = 0;
-        // current index of character
         int[] index = new int[128];
         for (int j = 0, i = 0; j < n; j++) {
             i = Math.max(index[s.charAt(j)], i);
-            ans = Math.max(ans, j -i + 1);
+            ans = Math.max(ans, j - i + 1);
             index[s.charAt(j)] = j + 1;
         }
         return ans;
     }
 
+
     public static void main(String[] args) {
-        String input = "abba";
+        String input = "abcabcbb";
         Three.lengthOfLongestSubstring(input);
     }
 }

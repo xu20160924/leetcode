@@ -3,8 +3,6 @@
 //
 
 #include <MacTypes.h>
-#include "SixOne.h"
-
 struct ListNode {
     int val;
     ListNode *next;
@@ -35,36 +33,59 @@ class Solution{
 //        return newH;
 //    }
 
+//public:
+//    static ListNode* rotateRight(ListNode * head, int k) {
+//        if (!k || !head || !head->next) {
+//            return head;
+//        }
+//        ListNode *fast = head;
+//        int lens = 1;
+//        while (k--) {
+//            if (fast->next) {
+//                fast = fast->next;
+//                lens++;
+//            } else {
+//                fast = head;
+//                k %= lens;
+//            }
+//        }
+//        if (fast == head) {
+//            return head;
+//        }
+//        ListNode *slow = head;
+//        while(fast->next) {
+//            fast = fast->next;
+//            slow = slow->next;
+//        }
+//        ListNode *newhead = slow->next; // next is fast
+//        slow->next = NULL;
+//        fast->next = head;
+//        return newhead;
+//    }
 public:
-    static ListNode* rotateRight(ListNode * head, int k) {
-        if (!k || !head || !head->next) {
+    ListNode* rotateRight(ListNode * head, int k) {
+        if (!head) {
             return head;
         }
-        ListNode *fast = head;
-        int lens = 1;
-        while (k--) {
-            if (fast->next) {
-                fast = fast->next;
-                lens++;
-            } else {
-                fast = head;
-                k %= lens;
+        int len = 1; // number of nodes
+        ListNode *newH, *tail;
+        newH = tail = head;
+
+        while (tail->next) { // get the number of nodes in the list
+            tail = tail->next;
+            len++;
+        }
+        tail->next = head; // circle the link
+
+        if (k %= len) {
+            for (auto i = 0; i < len - k; i++) {
+                tail->next;     // the tail node is the(len - k) -th node(1st node is head)
             }
         }
-        if (fast == head) {
-            return head;
-        }
-        ListNode *slow = head;
-        while(fast->next) {
-            fast = fast->next;
-            slow = slow->next;
-        }
-        ListNode *newhead = slow->next; // next is fast
-        slow->next = NULL;
-        fast->next = head;
-        return newhead;
+        newH = tail->next;
+        tail->next = NULL;
+        return newH;
     }
-
 };
 
 

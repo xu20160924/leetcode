@@ -191,96 +191,22 @@ public class SevenEight {
 //        }
 //    }
 
-//    public List<List<Integer>> binaryBit(int[] nums) {
-//        List<List<Integer>> res = new ArrayList<>();
-//        for (int i = 0; i < (1 << nums.length); i++) {
-//            List<Integer> sub = new ArrayList<>();
-//            for (int j = 0; j < nums.length; j++) {
-//                if (((i >> j) & 1) == 1) {
-//                    sub.add(nums[j]);
-//                }
-//            }
-//            res.add(sub);
-//        }
-//        return res;
-//    }
-
-
-//    public List<List<Integer>> subsets(int[] nums) {
-//        List<List<Integer>> res = new ArrayList<>();
-//        backtrack(res, new ArrayList<>(), nums, 0);
-//        return res;
-//    }
-//
-//    private void backtrack(List<List<Integer>> res, List<Integer> temp, int[] nums, int start) {
-//        res.add(new ArrayList<>(temp));
-//        for (int i = start; i < nums.length; i++) {
-//            temp.add(nums[i]);
-//            backtrack(res, temp, nums, i + 1);
-//            temp.remove(temp.size() - 1);
-//        }
-//    }
-
-//    public List<List<Integer>> subsets(int[] nums) {
-//        List<List<Integer>> output = new ArrayList<>();
-//        output.add(new ArrayList<>());
-//        for (int num : nums) {
-//            List<List<Integer>> newSubsets = new ArrayList<>();
-//            for (List<Integer> curr : output) {
-//                newSubsets.add(new ArrayList<Integer>(curr) {{add(num);}});
-//            }
-//            for (List<Integer> curr : newSubsets) {
-//                output.add(curr);
-//            }
-//        }
-//        return output;
-//    }
-
-
-//    List<List<Integer>> res = new ArrayList<>();
-//    int n, k;
-//
-//    public List<List<Integer>> subsets(int[] nums) {
-//        n = nums.length;
-//        for (k = 0; k < n + 1; ++k) {
-//            backtrack(new ArrayList<>(), nums, 0);
-//        }
-//        return res;
-//    }
-//
-//    private void backtrack(List<Integer> temp, int[] nums, int start) {
-//        if (temp.size() == k) {
-//            res.add(new ArrayList<>(temp));
-//        }
-//        for (int i = start; i < n; ++i) {
-//            temp.add(nums[i]);
-//            backtrack(temp, nums, i + 1);
-//            temp.remove(temp.size() - 1);
-//        }
-//    }
-    public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> output = new ArrayList<>();
-        int n = nums.length;
-
-        for (int i = (int)Math.pow(2, n); i < (int)Math.pow(2, n + 1); ++i) {
-//            System.out.println("sss:" + Integer.toBinaryString(i));
-//            System.out.println("aaa:" + Integer.toBinaryString(i).substring(1));
-            String bitmask = Integer.toBinaryString(i).substring(1);
-            List<Integer> curr = new ArrayList<>();
-            for (int j = 0; j < n; j++) {
-                if (bitmask.charAt(j) == '1') {
-                    curr.add(nums[j]);
+    public List<List<Integer>> binaryBit(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        for (int i = 0; i < (1 << nums.length); i++) {
+            List<Integer> sub = new ArrayList<>();
+            for (int j = 0; j < nums.length; j++) {
+                if (((i >> j) & 1) == 1) {
+                    sub.add(nums[j]);
                 }
-                output.add(curr);
             }
+            res.add(sub);
         }
-        return output;
+        return res;
     }
-
 
     public static void main(String[] args) {
         SevenEight sevenEight = new SevenEight();
-        List<List<Integer>> a = sevenEight.subsets(new int[]{1, 2, 3});
-//        System.out.println(2 << 3);
+//        sevenEight.subsets(new int[]{1, 2, 3});
     }
 }

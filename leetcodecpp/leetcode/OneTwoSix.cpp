@@ -273,7 +273,7 @@ public:
                 string curr = word;
                 for (int i = 0; i < l; i++) {
                     char ch = curr[i];
-                    for (int j = 'a'; j <= 'z'; j++) {
+                    for (int j = 'a'; j S<= 'z'; j++) {
                         curr[i] = j;
                         const string * parent = &word;
                         const string * child = &curr;
@@ -324,33 +324,33 @@ private:
 
 };
 
-//int main() {
-//    vector<string> wordList;
-////    wordList.push_back("hot");
-////    wordList.push_back("dot");
-////    wordList.push_back("dog");
-////    wordList.push_back("lot");
-////    wordList.push_back("log");
-////    wordList.push_back("cog");
-////    wordList.push_back("a");
-////    wordList.push_back("b");
-////    wordList.push_back("c");
-//
-//      wordList.push_back("ted");
-//      wordList.push_back("tex");
-//      wordList.push_back("red");
-//      wordList.push_back("tax");
-//      wordList.push_back("tad");
-//      wordList.push_back("den");
-//      wordList.push_back("rex");
-//      wordList.push_back("pee");
-//
-////    "red"
-////    "tax"
-////    ["ted","tex","red","tax","tad","den","rex","pee"]
-//
-//
-//    Solution * solution = new Solution();
-//    vector<vector<string>> res = solution->findLadders("red", "tax", wordList);
-//
-//}
+int main() {
+    vector<string> wordList;
+//    wordList.push_back("hot");
+//    wordList.push_back("dot");
+//    wordList.push_back("dog");
+//    wordList.push_back("lot");
+//    wordList.push_back("log");
+//    wordList.push_back("cog");
+//    wordList.push_back("a");
+//    wordList.push_back("b");
+//    wordList.push_back("c");
+
+      wordList.push_back("ted");
+      wordList.push_back("tex");
+      wordList.push_back("red");
+      wordList.push_back("tax");
+      wordList.push_back("tad");
+      wordList.push_back("den");
+      wordList.push_back("rex");
+      wordList.push_back("pee");
+
+//    "red"
+//    "tax"
+//    ["ted","tex","red","tax","tad","den","rex","pee"]
+
+
+    Solution * solution = new Solution();
+    vector<vector<string>> res = solution->findLadders("red", "tax", wordList);
+
+}

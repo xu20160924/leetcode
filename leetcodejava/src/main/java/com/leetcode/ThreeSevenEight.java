@@ -9,53 +9,26 @@ import java.util.PriorityQueue;
  **/
 public class ThreeSevenEight {
 
-    /**
-     * PriorityQueue solution
-     * @param matrix
-     * @param k
-     * @return
-     */
-//    public int kthSmallest(int[][] matrix, int k) {
-//        int n = matrix.length;
-//        PriorityQueue<Tuple> pq = new PriorityQueue<>();
-//        // 先放第一行
-//        for (int j = 0; j <= n - 1; j++) {
-//            pq.offer(new Tuple(0, j, matrix[0][j]));
-//        }
-//
-//        // 循环放剩下的行
-//        for (int i = 0; i < k - 1; i++) {
-//            Tuple t = pq.poll();
-//            // 防止最后一层下标越界
-//            if (t.x == n - 1) {
-//                continue;
-//            }
-//            pq.offer(new Tuple(t.x + 1, t.y, matrix[t.x + 1][t.y]));
-//        }
-//        return pq.poll().val;
-//    }
-
-
     // Binary search
-//    public int kthSmallest(int[][] matrix, int k) {
-//        int lo = matrix[0][0], hi = matrix[matrix.length - 1][matrix[0].length - 1] + 1;
-//        while (lo < hi) {
-//            int mid = lo + (hi - lo) / 2;
-//            int count = 0, j = matrix[0].length - 1;
-//            for (int i = 0; i < matrix.length; i++) {
-//                while (j >= 0 && matrix[i][j] > mid) {
-//                    j--;
-//                }
-//                count += (j + 1);
-//            }
-//            if (count < k) {
-//               lo = mid + 1;
-//            } else {
-//                hi = mid;
-//            }
-//        }
-//        return lo;
-//    }
+    public int kthSmallest(int[][] matrix, int k) {
+        int lo = matrix[0][0], hi = matrix[matrix.length - 1][matrix[0].length - 1] + 1;
+        while (lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+            int count = 0, j = matrix[0].length - 1;
+            for (int i = 0; i < matrix.length; i++) {
+                while (j >= 0 && matrix[i][j] > mid) {
+                    j--;
+                }
+                count += (j + 1);
+            }
+            if (count < k) {
+               lo = mid + 1;
+            } else {
+                hi = mid;
+            }
+        }
+        return lo;
+    }
 
 
 //    public int kthSmallest(int[][] matrix, int k) {
@@ -123,31 +96,9 @@ public class ThreeSevenEight {
         }
     }
 
-    // binary search solution
-    public int kthSmallest(int[][] matrix, int k) {
-        int lo = matrix[0][0], hi = matrix[matrix.length - 1][matrix[0].length - 1] + 1; // lo hi
-        while (lo < hi) {
-            int mid = lo + (hi - lo) / 2;
-            int count = 0, j = matrix[0].length - 1;
-            for (int i = 0; i < matrix.length; i++) {
-                while (j >= 0 && matrix[i][j] > mid) {
-                    j--;
-                }
-                count += (j + 1);
-            }
-            if (count < k) {
-                lo = mid + 1;
-            } else {
-                hi = mid;
-            }
-        }
-        return lo;
-    }
-
-
     public static void main(String[] args) {
         int[][] matrix = {{1,5,9},{10,11,13},{12,13,15}};
         ThreeSevenEight threeSevenEight = new ThreeSevenEight();
-        System.out.println(threeSevenEight.kthSmallest(matrix, 8));
+        threeSevenEight.kthSmallest(matrix, 2);
     }
 }

@@ -6,7 +6,7 @@ package com.leetcode;
  * @description: 7
  **/
 public class Seven {
-    public static int reverse(int x) {
+    public int reverse(int x) {
         int result = 0;
         while (x != 0) {
             int tail = x % 10;
@@ -18,9 +18,5 @@ public class Seven {
             x = x / 10;
         }
         return result;
-    }
-
-    public static void main(String[] args) {
-        Seven.reverse(1056389759);
     }
 }

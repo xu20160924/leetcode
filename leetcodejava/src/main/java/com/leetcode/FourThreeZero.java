@@ -40,40 +40,40 @@ public class FourThreeZero {
 //        return head;
 //    }
 
-//    public Node flatten(Node head) {
-//        Node res =flattentail(head);
-//        return res;
-//    }
+    public Node flatten(Node head) {
+        Node res =flattentail(head);
+        return res;
+    }
     // Five situations
     // 1. null - no need to flatten, just return it
     // 2. no child, no next - no need to flatten, it is the last element, just return it
     // 3. no child, next - no need to flatten, go next
     // 4. child, no next - flatten the child and done
     // 5. child, next -flatten the child, connect it with the next, go next
-//    private Node flattentail(Node head) {
-//        if (head == null) { // case 1
-//            return head;
-//        }
-//        if (head.child == null) {
-//            if (head.next == null) {  // case 2
-//                return head;
-//            }
-//            return flattentail(head.next); // case3
-//        } else {
-//            Node child = head.child;
-//            head.child = null;
-//            Node next = head.next;
-//            Node childtail = flattentail(child);
-//            head.next = child;
-//            child.prev = head;
-//            if (next != null) { // case 5
-//                childtail.next = next;
-//                next.prev = childtail;
-//                return flattentail(next);
-//            }
-//            return childtail;
-//        }
-//    }
+    private Node flattentail(Node head) {
+        if (head == null) { // case 1
+            return head;
+        }
+        if (head.child == null) {
+            if (head.next == null) {  // case 2
+                return head;
+            }
+            return flattentail(head.next); // case3
+        } else {
+            Node child = head.child;
+            head.child = null;
+            Node next = head.next;
+            Node childtail = flattentail(child);
+            head.next = child;
+            child.prev = head;
+            if (next != null) { // case 5
+                childtail.next = next;
+                next.prev = childtail;
+                return flattentail(next);
+            }
+            return childtail;
+        }
+    }
 
 
 }

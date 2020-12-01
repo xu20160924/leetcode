@@ -1,61 +1,138 @@
 package com.leetcode;
 
+/**
+ * @author: John
+ * @date: 2020-09-09 12:08
+ * @description:
+ **/
 public class SevenNine {
 //    public boolean exist(char[][] board, String word) {
 //        char[] w = word.toCharArray();
-//        for (int x = 0; x < board.length; x++) {
-//            for (int y = 0; y < board[0].length; y++) {
-//                return helper(board, w, 0, x, y);
+//        for (int y = 0; y < board.length; y++) {
+//            for (int x = 0; x < board[x].length; x++) {
+//                if (exist(board, y, x, w, 0)) {
+//                    return true;
+//                }
 //            }
 //        }
 //        return false;
 //    }
 //
-//    private boolean helper(char[][] board, char[] word, int k, int x, int y) {
-//        if (k == word.length) {
+//    private boolean exist(char[][] board, int y, int x, char[] word, int i) {
+//        if (i == word.length) {
 //            return true;
 //        }
-//        if (x < 0 || y < 0 || x == board.length || y == board[x].length) {
+//        if (y < 0 || x < 0 || y == board.length || x == board[y].length) {
 //            return false;
 //        }
-//
-//        if (board[x][y] != word[k]) {
+//        if (board[y][x] != word[i]) {
 //            return false;
 //        }
-//        board[x][y] ^= 256;
+//        board[y][x] = '`';
+//        boolean exist = exist(board, y + 1, x, word, i++) || exist(board, y, x + 1, word, i++) || exist(board, y - 1, x, word, i++) || exist(board, y, x - 1, word, i++);
+//        board[y][x] = '`';
+//        return exist;
+//    }
+
+//    public boolean exist(char[][] board, String word) {
+//        char[] w = word.toCharArray();
+//        for (int y = 0; y < board.length; y++) {
+//            for (int x = 0; x < board[y].length; x++) {
+//                if (exist(board, y, x, w, 0)) {
+//                    return true;
+//                }
+//            }
+//        }
+//        return false;
+//    }
 //
-//        boolean exist = helper(board, word, k++, x, y + 1) || helper(board, word, k++, x + 1, y) || helper(board, word, k++, x - 1, y) || helper(board, word, k++, x, y--);
-//        board[x][y] ^= 256;
+//    public boolean exist(char[][] board, int y, int x, char[] word, int i) {
+//        if (i == word.length) {
+//            return true;
+//        }
+//        if (y < 0 || x < 0 || y == board.length || x == board[y].length) {
+//            return false;
+//        }
+//        if (board[y][x] != word[i]) {
+//           return false;
+//        }
+//        board[y][x] = '`';
+////        board[y][x] ^= 256;
+//
+////        boolean exist = exist(board, y + 1, x, word, i + 1)  || exist(board, y, x + 1, word, i + 1) || exist(board, y - 1, x, word, i + 1) || exist(board, y, x - 1, word, i + 1);
+//        boolean exist = exist(board, y, x+1, word, i+1)
+//                || exist(board, y, x-1, word, i+1)
+//                || exist(board, y+1, x, word, i+1)
+//                || exist(board, y-1, x, word, i+1);
+////        board[y][x] ^= 256;
+//        board[y][x] = '`';
+//        return exist;
+//    }
+
+//    public boolean exist(char[][] board, String word) {
+//        char[] w = word.toCharArray();
+//        for (int y=0; y<board.length; y++) {
+//            for (int x=0; x<board[y].length; x++) {
+//                if (exist(board, y, x, w, 0)) return true;
+//            }
+//        }
+//        return false;
+//    }
+//
+//    private boolean exist(char[][] board, int y, int x, char[] word, int i) {
+//        if (i == word.length) return true;
+//        if (y<0 || x<0 || y == board.length || x == board[y].length) return false;
+//        if (board[y][x] != word[i]) return false;
+//        board[y][x] ^= 256;
+//        boolean exist = exist(board, y, x+1, word, i+1)
+//                || exist(board, y, x-1, word, i+1)
+//                || exist(board, y+1, x, word, i+1)
+//                || exist(board, y-1, x, word, i+1);
+//        board[y][x] ^= 256;
 //        return exist;
 //    }
 
     public boolean exist(char[][] board, String word) {
-        char[] w = word.toCharArray();
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j <board[i].length; j++) {
-                if (helper(board, w, i, j, 0)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+       for (int i = 0; i < board.length; i++) {
+           for (int j = 0; j < board[i].length; j++) {
+               if (exist(board, i, j, word, 0)) {
+                   return true;
+               }
+           }
+       }
+       return false;
     }
 
-    private boolean helper(char[][] board, char[] w, int i, int j, int idx) {
-        if (idx == w.length) {
-            return true;
-        }
-        if (i < 0 || j < 0 || i == board.length || j == board[i].length) {
-            return false;
-        }
-        if (board[i][j] != w[idx]) {
-            return false;
-        }
-        board[i][j] = '*';
-        boolean exist = helper(board, w, i, j + 1, idx++) || helper(board, w, i + 1, j, idx++) || helper(board, w, i - 1, j, idx++) ||helper(board, w, i, j - 1, idx++);
-        board[i][j] = w[idx];
-        return exist;
-
+    private boolean exist(char[][] board, int i, int j, String word, int ind) {
+       if (ind == word.length()) {
+           return true;
+       }
+       if (i < 0 || j < 0 || i == board.length || j == board[i].length || board[i][j] != word.charAt(ind)) {
+           return false;
+       }
+       board[i][j] = '*';
+       boolean result = exist(board, i - 1, j, word, ind++) || exist(board, i, j - 1, word, ind++) || exist(board, i + 1, j, word, ind++) || exist(board, i, j + 1, word, ind++);
+       board[i][j] = word.charAt(ind);
+       return result;
     }
 
+
+    public static void main(String[] args) {
+        char[][] board = new char[3][3];
+        board[0][0] = 'C';
+        board[0][1] = 'A';
+        board[0][2] = 'A';
+
+        board[1][0] = 'A';
+        board[1][1] = 'A';
+        board[1][2] = 'A';
+
+        board[2][0] = 'B';
+        board[2][1] = 'C';
+        board[2][2] = 'D';
+
+        String word = "AAB";
+        SevenNine sevenNine = new SevenNine();
+        System.out.println(sevenNine.exist(board, word));
+    }
 }

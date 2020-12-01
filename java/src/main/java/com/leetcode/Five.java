@@ -6,15 +6,15 @@ package com.leetcode;
  * @description: 5
  **/
 public class Five {
-    public char[] manacherString(String str) {
-        char[] charArr = str.toCharArray();
-        char[] res = new char[str.length() * 2 + 1];
-        int index = 0;
-        for (int i = 0; i != res.length; i++) {
-            res[i] = (i & 1) == 0 ? '#' : charArr[index++];
-        }
-        return res;
-    }
+//    public char[] manacherString(String str) {
+//        char[] charArr = str.toCharArray();
+//        char[] res = new char[str.length() * 2 + 1];
+//        int index = 0;
+//        for (int i = 0; i != res.length; i++) {
+//            res[i] = (i & 1) == 0 ? '#' : charArr[index++];
+//        }
+//        return res;
+//    }
 
 
     /**

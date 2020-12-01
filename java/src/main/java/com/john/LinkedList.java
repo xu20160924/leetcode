@@ -10,7 +10,7 @@ import java.util.Stack;
  * @date: 2020-01-27 14:42
  * @description:
  **/
-public class LinkedList {
+public class LinkedList<D extends Number> {
     static class Node {
         public int value;
         public Node next;

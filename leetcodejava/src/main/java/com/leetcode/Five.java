@@ -352,36 +352,55 @@ public class Five {
 //        five.longestPalindrome(str);
 //    }
 
+//    public String longestPalindrome(String s) {
+//        if (s == null || s.length() < 1) {
+//            return "";
+//        }
+//        int start = 0, end = 0;
+//        for (int i = 0; i < s.length(); i++) {
+//            int len1 = expandAroundCenter(s, i, i);
+//            int len2 = expandAroundCenter(s, i, i + 1);
+//            int len = Math.max(len1, len2);
+//            if (len > end - start) {
+//                start = i - (len - 1) / 2;
+//                end = i + len / 2;
+//            }
+//        }
+//        return s.substring(start, end + 1);
+//    }
+//
+//
+//    private int expandAroundCenter(String s, int left, int right) {
+//        int L = left, R = right;
+//        while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
+//            L--;
+//            R++;
+//        }
+//        return R - L - 1;
+//    }
+
     public String longestPalindrome(String s) {
-        if (s == null || s.length() < 1) {
-            return "";
-        }
-        int start = 0, end = 0;
+        int max = 0, idx = 0;
         for (int i = 0; i < s.length(); i++) {
-            int len1 = expandAroundCenter(s, i, i);
-            int len2 = expandAroundCenter(s, i, i + 1);
-            int len = Math.max(len1, len2);
-            if (len > end - start) {
-                start = i - (len - 1) / 2;
-                end = i + len / 2;
+            int len1 = extend(s, i, i), len2 = extend(s, i, i + 1);
+            if (max < Math.max(len1, len2)) {
+                idx = (len1 > len2) ? (i - len1 / 2) : (i - len2 / 2 + 1);
+                max = Math.max(len1, len2);
             }
         }
-        return s.substring(start, end + 1);
+        return s.substring(idx, idx + max);
     }
 
-
-    private int expandAroundCenter(String s, int left, int right) {
-        int L = left, R = right;
-        while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
-            L--;
-            R++;
-        }
-        return R - L - 1;
+    private int extend(String s, int i, int j) {
+        for (; i >= 0 && j < s.length(); i--, j++)
+            if (s.charAt(i) != s.charAt(j))
+                break;
+        return j - i - 2 + 1; // 2 means current two unmatched char
     }
 
     public static void main(String[] args) {
-        Five five = new Five();
-        five.longestPalindrome("cbbd");
-
+//        Five five = new Five();
+//        System.out.println(five.longestPalindrome("cbbd"));
+        System.out.println("cbbd".substring(1, 3));
     }
 }

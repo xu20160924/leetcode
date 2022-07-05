@@ -2,8 +2,6 @@ package com.entity;
 
 import java.util.PriorityQueue;
 
-import static org.junit.Assert.assertEquals;
-
 /**
  * @author: John
  * @date: 2019-12-31 11:53
@@ -36,11 +34,11 @@ public class KthLargest {
         int k = 3;
         int[] arr = new int[]{4, 5, 8, 2};
         KthLargest kthLargest = new KthLargest(k, arr);
-        assertEquals(4, kthLargest.add(3));
-        assertEquals(5, kthLargest.add(5));
-        assertEquals(5, kthLargest.add(10));
-        assertEquals(8, kthLargest.add(9));
-        assertEquals(8, kthLargest.add(4));
+//        assertEquals(4, kthLargest.add(3));
+//        assertEquals(5, kthLargest.add(5));
+//        assertEquals(5, kthLargest.add(10));
+//        assertEquals(8, kthLargest.add(9));
+//        assertEquals(8, kthLargest.add(4));
     }
 //    public static void main(String[] args) {
 //        PriorityQueue<Integer> queue = new PriorityQueue<>(10);

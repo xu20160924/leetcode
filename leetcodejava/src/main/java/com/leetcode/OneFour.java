@@ -173,7 +173,8 @@ public class OneFour {
 
 
     /**
-     *  divide and conquer
+     * divide and conquer
+     *
      * @param strs
      * @return
      */
@@ -206,43 +207,65 @@ public class OneFour {
 //    }
 
 
-
+//    public String longestCommonPrefix(String[] strs) {
+//        if (strs == null || strs.length == 0) {
+//            return "";
+//        }
+//        int minLen = Integer.MAX_VALUE;
+//        for (String str : strs) {
+//            minLen = Math.min(minLen, str.length());
+//        }
+//        int low = 1;
+//        int high = minLen;
+//        while (low <= high) {
+//            int middle = (low + high) / 2;
+//            if (isCommonPrefix(strs, middle)) {
+//                low = middle + 1;
+//            } else {
+//                high = middle - 1;
+//            }
+//        }
+//        return strs[0].substring(0, (low + high) / 2);
+//    }
+//    private boolean isCommonPrefix(String[] strs, int len) {
+//        String str1 = strs[0].substring(0, len);
+//        for (int i = 1; i < strs.length; i++) {
+//            if (!strs[i].startsWith(str1)) {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 
     public String longestCommonPrefix(String[] strs) {
-        if (strs == null || strs.length == 0) {
-            return "";
-        }
-        int minLen = Integer.MAX_VALUE;
-        for (String str : strs) {
-            minLen = Math.min(minLen, str.length());
-        }
-        int low = 1;
-        int high = minLen;
-        while (low <= high) {
-            int middle = (low + high) / 2;
-            if (isCommonPrefix(strs, middle)) {
-                low = middle + 1;
-            } else {
-                high = middle - 1;
-            }
-        }
-        return strs[0].substring(0, (low + high) / 2);
+        if (strs == null || strs.length == 0) return "";
+        return longestCommonPrefix(strs, 0 , strs.length - 1);
     }
 
-    private boolean isCommonPrefix(String[] strs, int len) {
-        String str1 = strs[0].substring(0, len);
-        for (int i = 1; i < strs.length; i++) {
-            if (!strs[i].startsWith(str1)) {
-                return false;
-            }
+    private String longestCommonPrefix(String[] strs, int l, int r) {
+        if (l == r) {
+            return strs[l];
         }
-        return true;
+        else {
+            int mid = (l + r)/2;
+            String lcpLeft =   longestCommonPrefix(strs, l , mid);
+            String lcpRight =  longestCommonPrefix(strs, mid + 1,r);
+            return commonPrefix(lcpLeft, lcpRight);
+        }
     }
 
+    String commonPrefix(String left,String right) {
+        int min = Math.min(left.length(), right.length());
+        for (int i = 0; i < min; i++) {
+            if ( left.charAt(i) != right.charAt(i) )
+                return left.substring(0, i);
+        }
+        return left.substring(0, min);
+    }
 
     public static void main(String[] args) {
-        String[] strs = {"flower", "flow", "flight"};
         OneFour oneFour = new OneFour();
-        oneFour.longestCommonPrefix(strs);
+        String[] strs = {"flower", "flow", "flight"};
+        System.out.println(oneFour.longestCommonPrefix(strs));
     }
 }

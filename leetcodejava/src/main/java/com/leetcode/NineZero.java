@@ -41,6 +41,9 @@ public class NineZero {
     private void backtrack(List<List<Integer>> res, List<Integer> temp, int[] nums, int start) {
 
         res.add(new ArrayList<>(temp));
+        if (temp.size() == 2) {
+            return;
+        }
 
         for (int i = start; i < nums.length; i++) {
             if (i > start && nums[i] == nums[i - 1]) {
@@ -55,5 +58,11 @@ public class NineZero {
     public static void main(String[] args) {
         NineZero nineZero = new NineZero();
         List<List<Integer>> a = nineZero.subsetsWithDup(new int[]{1,2,2});
+        for (List<Integer> item : a) {
+            for (Integer num : item) {
+                System.out.print(num);
+            }
+            System.out.println();
+        }
     }
 }

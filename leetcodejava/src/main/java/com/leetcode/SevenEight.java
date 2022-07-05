@@ -258,29 +258,76 @@ public class SevenEight {
 //            temp.remove(temp.size() - 1);
 //        }
 //    }
-    public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> output = new ArrayList<>();
-        int n = nums.length;
+//    public List<List<Integer>> subsets(int[] nums) {
+//        List<List<Integer>> output = new ArrayList<>();
+//        int n = nums.length;
+//
+//        for (int i = (int)Math.pow(2, n); i < (int)Math.pow(2, n + 1); ++i) {
+////            System.out.println("sss:" + Integer.toBinaryString(i));
+////            System.out.println("aaa:" + Integer.toBinaryString(i).substring(1));
+//            String bitmask = Integer.toBinaryString(i).substring(1);
+//            List<Integer> curr = new ArrayList<>();
+//            for (int j = 0; j < n; j++) {
+//                if (bitmask.charAt(j) == '1') {
+//                    curr.add(nums[j]);
+//                }
+//                output.add(curr);
+//            }
+//        }
+//        return output;
+//    }
 
-        for (int i = (int)Math.pow(2, n); i < (int)Math.pow(2, n + 1); ++i) {
-//            System.out.println("sss:" + Integer.toBinaryString(i));
-//            System.out.println("aaa:" + Integer.toBinaryString(i).substring(1));
-            String bitmask = Integer.toBinaryString(i).substring(1);
+
+//    public List<List<Integer>> subsets(int[] nums) {
+//        List<List<Integer>> output = new ArrayList<>();
+//        output.add(new ArrayList<Integer>());
+//
+//        for (int num : nums) {
+//            List<List<Integer>> newSubsets = new ArrayList<>();
+//            for (List<Integer> curr : output) {
+//                newSubsets.add(new ArrayList<Integer>(curr){{ add(num); }});
+//            }
+//            for (List<Integer> curr : newSubsets) {
+//                output.add(curr);
+//            }
+//        }
+//        return output;
+//    }
+
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        int n = nums.length;
+        int nthBit = 1 << n;
+        for (int i = 0; i < (int)Math.pow(2, n); ++i) {
+//        for (int i = (int)Math.pow(2, n); i < (int)Math.pow(2, n + 1); ++i) {
+//            String bitmask =
+//                    Integer.toBinaryString(i).substring(1);
+            String bitmask =
+                    Integer.toBinaryString(i | nthBit)
+                            .substring(1);
             List<Integer> curr = new ArrayList<>();
-            for (int j = 0; j < n; j++) {
+            for (int j = 0; j < n; ++j) {
                 if (bitmask.charAt(j) == '1') {
                     curr.add(nums[j]);
                 }
-                output.add(curr);
             }
+            ans.add(curr);
         }
-        return output;
+        return ans;
     }
-
 
     public static void main(String[] args) {
         SevenEight sevenEight = new SevenEight();
-        List<List<Integer>> a = sevenEight.subsets(new int[]{1, 2, 3});
-//        System.out.println(2 << 3);
+        System.out.println(1 << 3);
+//        List<List<Integer>> a = sevenEight.subsets(new int[]{1, 2, 3});
+////        System.out.println(2 << 3);
+//        for (List<Integer> list : a) {
+//            for (Integer item : list) {
+//                System.out.print(item);
+//            }
+//            System.out.println();
+//        }
+//        System.out.println(Integer.toBinaryString(1));
+//        System.out.println("123".substring(1));
     }
 }

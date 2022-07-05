@@ -43,35 +43,35 @@ public:
     }
 };
 
-int main() {
-    Solution *solution = new Solution();
-    vector<int> arr;
-    arr.emplace_back(2);
-    arr.emplace_back(1);
-    arr.emplace_back(5);
-    arr.emplace_back(3);
-    arr.emplace_back(6);
-    arr.emplace_back(4);
-    arr.emplace_back(8);
-    arr.emplace_back(9);
-    arr.emplace_back(7);
-    solution->LIS(arr);
-
-
-
-//    const std::vector<int> data = { 1, 2, 4, 5, 5, 6 };
-//    for (int i = 0; i < 8; ++i) {
-//        // Search for first element x such that i ≤ x
-//        auto lower = std::lower_bound(data.begin(), data.end(), i);
+//int main() {
+//    Solution *solution = new Solution();
+//    vector<int> arr;
+//    arr.emplace_back(2);
+//    arr.emplace_back(1);
+//    arr.emplace_back(5);
+//    arr.emplace_back(3);
+//    arr.emplace_back(6);
+//    arr.emplace_back(4);
+//    arr.emplace_back(8);
+//    arr.emplace_back(9);
+//    arr.emplace_back(7);
+//    solution->LIS(arr);
 //
-//        std::cout << i << " ≤ ";
-//        lower != data.end()
-//        ? std::cout << *lower << " at index " << std::distance(data.begin(), lower)
-////        *lower
-////        std::distance(data.begin(), lower)
-//        : std::cout << "[not found]";
-//        std::cout << '\n';
-//    }
-
-
-}
+//
+//
+////    const std::vector<int> data = { 1, 2, 4, 5, 5, 6 };
+////    for (int i = 0; i < 8; ++i) {
+////        // Search for first element x such that i ≤ x
+////        auto lower = std::lower_bound(data.begin(), data.end(), i);
+////
+////        std::cout << i << " ≤ ";
+////        lower != data.end()
+////        ? std::cout << *lower << " at index " << std::distance(data.begin(), lower)
+//////        *lower
+//////        std::distance(data.begin(), lower)
+////        : std::cout << "[not found]";
+////        std::cout << '\n';
+////    }
+//
+//
+//}

@@ -92,27 +92,65 @@ public class OneSeven {
         put("8", "tuv");
         put("9", "wxyz");
     }};
-    List<String> output = new ArrayList<String>();
+//    List<String> output = new ArrayList<String>();
+//    public List<String> letterCombinations(String digits) {
+//        if (digits.equals("")) {
+//            return output;
+//        }
+//        backtrack("", digits);
+//        return output;
+//    }
+//
+//
+//    private void backtrack(String combination, String nextDigit) {
+//        if (nextDigit.equals("")) {
+//            output.add(combination);
+//        } else {
+//            String digit = nextDigit.substring(0, 1);
+//            String letters = map.get(digit);
+//            for (int i = 0; i < letters.length(); i++) {
+//                backtrack(combination + letters.charAt(i), nextDigit.substring(1));
+//            }
+//        }
+//    }
+
+//    public List<String> letterCombinations(String digits) {
+//        LinkedList<String> ans = new LinkedList<>();
+//        if (digits.isEmpty()) {
+//            return ans;
+//        }
+//        String[] mapping = new String[] {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+//        ans.add("");
+//        for (int i = 0; i < digits.length(); i++) {
+//            int x = Character.getNumericValue(digits.charAt(i));
+//            while (ans.peek().length() == i) {
+//                String t = ans.remove();
+//                for (char c : mapping[x].toCharArray()) {
+//                    ans.add(t + c);
+//                }
+//            }
+//        }
+//
+//        return ans;
+//    }
+
     public List<String> letterCombinations(String digits) {
-        if (digits.equals("")) {
-            return output;
+        LinkedList<String> ans = new LinkedList<>();
+        if (digits.isEmpty()) {
+            return ans;
         }
-        backtrack("", digits);
-        return output;
-    }
-
-
-    private void backtrack(String combination, String nextDigit) {
-        if (nextDigit.equals("")) {
-            output.add(combination);
-        } else {
-            String digit = nextDigit.substring(0, 1);
-            String letters = map.get(digit);
-            for (int i = 0; i < letters.length(); i++) {
-                backtrack(combination + letters.charAt(i), nextDigit.substring(1));
+        String[] mapping = new String[] {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        ans.add("");
+        while (ans.peek().length() != digits.length()) {
+            String remove = ans.remove();
+            String map = mapping[digits.charAt(remove.length()) - '0'];
+            for (char c : map.toCharArray()) {
+                ans.addLast(remove + c);
             }
         }
+        return ans;
     }
+
 
 
     public static void main(String[] args) {

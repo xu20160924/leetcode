@@ -1,7 +1,5 @@
 package com.leetcode;
 
-import java.util.Arrays;
-
 /**
  * @author: John
  * @date: 2020-11-16 11:02
@@ -9,7 +7,8 @@ import java.util.Arrays;
  **/
 public class OneOne {
     /**
-     *  brute force
+     * brute force
+     *
      * @param args
      */
 //    public int maxArea(int[] height) {
@@ -22,18 +21,18 @@ public class OneOne {
 //        return maxarea;
 //    }
     public int maxArea(int[] height) {
-       int maxarea = 0, l = 0, r = height.length - 1;
-       while (l < r) {
+        int maxarea = 0, l = 0, r = height.length - 1;
+        while (l < r) {
             maxarea = Math.max(maxarea, Math.min(height[l], height[r]) * (r - l));
-       }
-       if (height[l] < height[r]) {
-           l++;
-       } else {
-           r--;
-       }
-       return maxarea;
-    }
+            if (height[l] < height[r]) {
+                l++;
+            } else {
+                r--;
+            }
+        }
 
+        return maxarea;
+    }
 
 
     public static void main(String[] args) {

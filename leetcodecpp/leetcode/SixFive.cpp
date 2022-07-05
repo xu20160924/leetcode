@@ -1,8 +1,8 @@
 //
-// Created by xuyang30 on 2021/5/24.
+// Created by John on 2021/5/24.
 //
-#include <unordered_map>
-#include <string>
+#include "string"
+#include "unordered_map"
 
 using namespace std;
 
@@ -43,12 +43,8 @@ public:
         }
     }
 
-    bool isNumber(string s) {
-        unordered_map<Solution::State, float> a {
-                {STATE_INTEGER, 1}
-
-        };
-//        unordered_map<State, unordered_map<CharType, State>> transfer = {
+//    bool isNumber(string s) {
+//        unordered_map<State, unordered_map<CharType, State>> transfer{
 //                {
 //                        STATE_INITIAL, {
 //                                               {CHAR_NUMBER, STATE_INTEGER},
@@ -97,18 +93,18 @@ public:
 //                                       }
 //                }
 //        };
-
-        int len = s.length();
-        State st = STATE_INITIAL;
-
-        for (int i = 0; i < len; i++) {
-            CharType typ = toCharType(s[i]);
-            if (transfer[st].find(typ) == transfer[st].end()) {
-                return false;
-            } else {
-                st = transfer[st][typ];
-            }
-        }
-        return st == STATE_INTEGER || st == STATE_POINT || st == STATE_FRACTION || st == STATE_EXP_NUMBER || st == STATE_END;
-    }
+//
+//        int len = s.length();
+//        State st = STATE_INITIAL;
+//
+//        for (int i = 0; i < len; i++) {
+//            CharType typ = toCharType(s[i]);
+//            if (transfer[st].find(typ) == transfer[st].end()) {
+//                return false;
+//            } else {
+//                st = transfer[st][typ];
+//            }
+//        }
+//        return st == STATE_INTEGER || st == STATE_POINT || st == STATE_FRACTION || st == STATE_EXP_NUMBER || st == STATE_END;
+//    }
 };

@@ -2,7 +2,6 @@
 // Created by John on 2020/2/16.
 //
 
-#include "Five.h"
 #include <string>
 #include <iostream>
 #include <vector>
@@ -10,7 +9,7 @@
 using namespace std;
 
 
-class Solution{
+class Solution {
 //private:
 //    string centerSpread(string s, int left, int right) {
 //        int size = s.size();
@@ -111,60 +110,124 @@ class Solution{
 //        }
 //        return s.substr(start, maxLen);
 //    }
+//public:
+//    string longestPalindrome(string s) {
+//        int size = s.size();
+//        if (size < 2) {
+//            return s;
+//        }
+//
+//        //pre process
+//        string str = "#";
+//        for (int i = 0; i < size; i++) {
+//            str +=s[i];
+//            str += "#";
+//        }
+//
+//        // the new string's size
+//        int strSize = size * 2 + 1;
+//        vector<int> p(strSize, 0);
+//
+//        int maxRight = 0;
+//        int center = 0;
+//
+//        int maxLen = 1;
+//        int start = 0;
+//
+//        for (int i = 0; i < strSize; i++) {
+//            if (i < maxRight) {
+//                int mirror = (2 * center) - i;
+//                p[i] = min(maxRight - i, p[mirror]);
+//            }
+//            int left = i - (1 + p[i]);
+//            int right = i + (1 + p[i]);
+//            while (left >= 0 && right <= strSize && str[left] == str[right]) {
+//                p[i]++;
+//                left--;
+//                right++;
+//            }
+//
+//            if (i + p[i] > maxRight) {
+//                maxRight = i + p[i];
+//                center = i;
+//            }
+//
+//            if (p[i] > maxLen) {
+//                maxLen = p[i];
+//                start = (i - maxLen) / 2;
+//            }
+//        }
+//        return s.substr(start, maxLen);
+//    }
+
 public:
     string longestPalindrome(string s) {
-        int size = s.size();
-        if (size < 2) {
+        int len = s.length();
+        if (len < 2) {
             return s;
         }
 
-        //pre process
-        string str = "#";
-        for (int i = 0; i < size; i++) {
-            str +=s[i];
-            str += "#";
-        }
-
-        // the new string's size
-        int strSize = size * 2 + 1;
-        vector<int> p(strSize, 0);
-
-        int maxRight = 0;
-        int center = 0;
-
-        int maxLen = 1;
-        int start = 0;
-
-        for (int i = 0; i < strSize; i++) {
-            if (i < maxRight) {
-                int mirror = (2 * center) - i;
-                p[i] = min(maxRight - i, p[mirror]);
-            }
-            int left = i - (1 + p[i]);
-            int right = i + (1 + p[i]);
-            while (left >= 0 && right <= strSize && str[left] == str[right]) {
-                p[i]++;
-                left--;
-                right++;
-            }
-
-            if (i + p[i] > maxRight) {
-                maxRight = i + p[i];
-                center = i;
-            }
-
-            if (p[i] > maxLen) {
-                maxLen = p[i];
-                start = (i - maxLen) / 2;
+        int max = INT_MIN;
+        int li = 0;
+        for (int i = 0; i < len; i++) {
+            int len1 = extentPalindrome(s, i, i),
+            len2 = extentPalindrome(s, i, i + 1);
+            if (max < std::max(len1, len2)) {
+                li = (len1 > len2) ? (i - len1 / 2) : (i - len2 / 2 + 1);
+                max = std::max(len1, len2);
             }
         }
-        return s.substr(start, maxLen);
+        return s.substr(li, max);
     }
 
+private:
+    int extentPalindrome(string s, int j, int k) {
+//        while (j >= 0 && k < s.length() && s[j] == s[k]) {
+//            j--;
+//            k++;
+//        }
+        for (; j >= 0 && j < s.length(); j--, k++) {
+            if (s[j] != s[k]) {
+                break;
+            }
+        }
+        return k - j - 2 + 1;
+    }
+
+//public:
+//    string longestPalindrome(string s) {
+//        int len = s.size();
+//        if (len < 2) {
+//            return s;
+//        }
+//
+//        for (int i = 0; i < len - 1; i++) {
+//            extendPalindrome(s, i, i);
+//            extendPalindrome(s, i, i + 1);
+//        }
+//        return s.substr(lo, lo + maxLen);
+//    }
+//
+//private:
+//    int lo, maxLen;
+//
+//    void extendPalindrome(string s, int j, int k) {
+//        while (j >= 0 && k < s.size() && s[j] == s[k]) {
+//            j--;
+//            k++;
+//        }
+//        if (maxLen < k - j - 1) {
+//            lo = j + 1;
+//            maxLen = k - j - 1;
+//        }
+//    }
 };
 
-//int main(){
-//    string str = "abab";
+//int main() {
+//    string str = "cbbd";
 //    Solution *solution = new Solution();
 //    cout << solution->longestPalindrome(str) << endl;
+//
+////    string str = "bb";
+////    cout << str.substr(0, 1) << endl;
 //}

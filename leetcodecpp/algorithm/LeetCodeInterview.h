@@ -34,6 +34,26 @@ struct Node {
     }
 };
 
+ListNode* createListNode(int *array, int size) {
+    ListNode *root, *head = new ListNode();
+    head->next = root;
+
+    for (int i = 0; i < size; ++i) {
+
+        root->val = array[i];   // current node
+        root->next = NULL;
+
+        if ((i + 1) < size) {
+            ListNode *p = new ListNode(); // next node
+            p->val = array[i + 1];
+
+            root->next = p;
+            root = root->next;
+        }
+    }
+    return head->next;
+}
+
 
 
 #endif //UNTITLED_LEETCODEINTERVIEW_H

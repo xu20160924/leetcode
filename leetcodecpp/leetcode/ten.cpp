@@ -126,10 +126,12 @@ public:
 //        return dp[0][0];
 //    }
 
+//   recursion
     bool isMatch(string s, string p) {
-        bool dp[s.length() + 1][p.length() + 1];
-        dp[0][0] = true;
-        
+        if (p.empty()) {
+            return s.empty();
+        }
+
     }
 };
 

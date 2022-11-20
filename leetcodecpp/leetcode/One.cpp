@@ -75,10 +75,10 @@ public:
 //    }
 };
 
-int main() {
-
-    vector<int> nums{3, 2, 4};
-    Solution* solution = new Solution();
-    vector<int> res = solution->twoSum(nums, 6);
-    cout << "" << endl;
-}
+//int main() {
+//
+//    vector<int> nums{3, 2, 4};
+//    Solution* solution = new Solution();
+//    vector<int> res = solution->twoSum(nums, 6);
+//    cout << "" << endl;
+//}

@@ -7,28 +7,48 @@ using namespace std;
 
 class Solution{
 public:
-    Solution(vector<int> nums) {
-        Elements = nums;
-    }
-    // Resets the Array to its original configuration and return it.
-    vector<int> reset() {
-        return Elements;
-    }
-
-    // Return a random shuffling of the array.
-    vector<int> shuffle() {
-        vector<int> vShuffle = Elements;
-        for (int i = 1; i < vShuffle.size(); ++i) {
-            int r = rand() % (i + 1);
-            if (r != i) {
-                swap(vShuffle[r], vShuffle[i]);
-            }
-        }
-        return vShuffle;
-    }
+//    Solution(vector<int> nums) {
+//        Elements = nums;
+//    }
+//    // Resets the Array to its original configuration and return it.
+//    vector<int> reset() {
+//        return Elements;
+//    }
+//
+//    // Return a random shuffling of the array.
+//    vector<int> shuffle() {
+//        vector<int> vShuffle = Elements;
+//        for (int i = 1; i < vShuffle.size(); ++i) {
+//            int r = rand() % (i + 1);
+//            if (r != i) {
+//                swap(vShuffle[r], vShuffle[i]);
+//            }
+//        }
+//        return vShuffle;
+//    }
 
 private:
-    vector<int> Elements;
+    vector<int> elements;
+
+public:
+    Solution(vector<int>& nums) {
+        elements = nums;
+    }
+
+    vector<int> reset() {
+        return elements;
+    }
+
+    vector<int> shuffle() {
+        vector<int> shuffle = elements;
+        for (int i = 1; i < shuffle.size(); i++) {
+            int r = rand() % (i + 1);
+            if (r != i) {
+                swap(shuffle[r], shuffle[i]);
+            }
+        }
+        return shuffle;
+    }
 };
 
 //int main() {

@@ -1,0 +1,10 @@
+state,loan_year,loan_quarter,rate_type,interest_rate
+CA,2018,1,Fixed,3.5
+CA,2018,1,Fixed,3.6
+CA,2018,1,Variable,3.2
+CA,2018,2,Fixed,3.8
+CA,2018,2,Variable,3.3
+NY,2018,1,Fixed,4.0
+NY,2018,1,Variable,3.7
+TX,2018,3,Fixed,3.9
+TX,2018,3,Variable,3.6

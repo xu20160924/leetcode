@@ -117,9 +117,7 @@ public class OneOneSeven {
                 nextHead.next = null;
                 prev = nextHead;
             }
-
         }
-
     }
 
 

@@ -1,7 +1,7 @@
 package com.leetcode;
 
+import com.entity.Pair;
 import com.entity.TreeNode;
-import javafx.util.Pair;
 
 import java.util.*;
 

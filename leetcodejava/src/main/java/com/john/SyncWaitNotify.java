@@ -1,6 +1,5 @@
 package com.john;
 
-import com.sun.corba.se.impl.orbutil.concurrent.Sync;
 
 public class SyncWaitNotify {
     private int flag;

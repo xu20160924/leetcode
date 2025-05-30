@@ -1,7 +1,5 @@
 package com.entity;
 
-import com.leetcode.FiveFiveNine;
-
 import java.util.List;
 
 /**
@@ -22,16 +20,21 @@ public class Node {
 //        this.child = child;
 //    }
     public int val;
-    public List<Node> children;
+    public Node next;
+    public Node prev;
+    public boolean isEaten;
 
     public Node() {}
 
     public Node(int _val) {
         val = _val;
+        isEaten = false;
     }
 
-    public Node(int _val, List<Node> _children) {
+    public Node(int _val, Node _next, Node _prev) {
         val = _val;
-        children = _children;
+        next = _next;
+        prev = _prev;
+        isEaten = false;
     }
 }

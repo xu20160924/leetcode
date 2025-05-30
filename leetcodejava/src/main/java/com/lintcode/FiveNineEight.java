@@ -1,6 +1,5 @@
 package com.lintcode;
 
-import java.awt.peer.ListPeer;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;

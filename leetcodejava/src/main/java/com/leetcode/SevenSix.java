@@ -1,7 +1,8 @@
 package com.leetcode;
 
 
-import javafx.util.Pair;
+
+import com.entity.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -145,30 +145,30 @@ public:
 
 };
 
-int main() {
-
-    Solution * solution = new Solution();
-    vector<int> nums;
-//    nums.push_back(0);
-//    nums.push_back(1);
-//    nums.push_back(0);
-//    nums.push_back(2);
-//    nums.push_back(1);
-//    nums.push_back(0);
-//    nums.push_back(1);
-//    nums.push_back(3);
-//    nums.push_back(2);
-//    nums.push_back(1);
-//    nums.push_back(2);
-//    nums.push_back(1);
-
-    nums.push_back(4);
-    nums.push_back(2);
-    nums.push_back(0);
-    nums.push_back(3);
-    nums.push_back(2);
-    nums.push_back(5);
-    // 9
-
-    cout <<solution->trap(nums) << endl;
-}
+// int main() {
+//
+//     Solution * solution = new Solution();
+//     vector<int> nums;
+// //    nums.push_back(0);
+// //    nums.push_back(1);
+// //    nums.push_back(0);
+// //    nums.push_back(2);
+// //    nums.push_back(1);
+// //    nums.push_back(0);
+// //    nums.push_back(1);
+// //    nums.push_back(3);
+// //    nums.push_back(2);
+// //    nums.push_back(1);
+// //    nums.push_back(2);
+// //    nums.push_back(1);
+//
+//     nums.push_back(4);
+//     nums.push_back(2);
+//     nums.push_back(0);
+//     nums.push_back(3);
+//     nums.push_back(2);
+//     nums.push_back(5);
+//     // 9
+//
+//     cout <<solution->trap(nums) << endl;
+// }

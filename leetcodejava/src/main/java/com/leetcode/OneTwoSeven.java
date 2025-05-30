@@ -1,11 +1,7 @@
 package com.leetcode;
 
-
-
-
-import javafx.util.Pair;
-
 import java.util.*;
+import com.entity.Pair;
 
 /**
  * @author: John

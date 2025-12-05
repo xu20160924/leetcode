@@ -24,6 +24,7 @@ public class Node {
     public Node prev;
     public boolean isEaten;
 
+    public List<Node> children;
     public Node() {}
 
     public Node(int _val) {

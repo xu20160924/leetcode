@@ -68,26 +68,5 @@ public class FiveEightNine {
 
 
     public static void main(String[] args) {
-        FiveEightNine fiveEightNine = new FiveEightNine();
-
-        Node root = new Node(1);
-        List<Node> list1 = new ArrayList<>();
-        Node node3 = new Node(3);
-        Node node2 = new Node(2, new ArrayList<>());
-        Node node4 = new Node(4, new ArrayList<>());
-        list1.add(node3);
-        list1.add(node2);
-        list1.add(node4);
-
-        Node node5 = new Node(5, new ArrayList<>());
-        Node node6 = new Node(6, new ArrayList<>());
-        List<Node> list2 = new ArrayList<>();
-        list2.add(node5);
-        list2.add(node6);
-
-        node3.children = list2;
-        root.children = list1;
-
-        fiveEightNine.preorder(root);
     }
 }

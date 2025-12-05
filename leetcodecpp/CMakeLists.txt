@@ -13,21 +13,6 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=address,undefin
 #endif()
 
 add_executable(ThreeZero leetcode/ThreeZero.cpp)
-add_executable(FourTwo leetcode/FourTwo.cpp
-        leetcode/SixFiveEight.cpp
-        leetcode/NineZeroNine.cpp
-        leetcode/FourThreeThree.cpp
-        leetcode/SixSeven.cpp
-        leetcode/FiveEight.cpp
-        leetcode/OneOneSeven.cpp
-        leetcode/Node.cpp
-        leetcode/Node.h
-        leetcode/OneTwoOne.cpp
-        leetcode/Four.cpp
-        leetcode/OneThreeFour.cpp
-        leetcode/OneNineZeroSix.cpp
-        leetcode/Test.cpp
-)
 add_executable(SixFiveEight leetcode/SixFiveEight.cpp)
 add_executable(OneEightNine leetcode/OneEightNine.cpp)
 add_executable(ThreeNineFive leetcode/ThreeNineFive.cpp)
@@ -45,3 +30,8 @@ add_executable(Test leetcode/Test.cpp)
 add_executable(OneSixNine leetcode/OneSixNine.cpp)
 add_executable(ThreeTwo leetcode/ThreeTwo.cpp)
 add_executable(OneThreeFive leetcode/OneThreeFive.cpp)
+add_executable(TwoSeven leetcode/TwoSeven.cpp)
+add_executable(FourTwo leetcode/FourTwo.cpp)
+add_executable(TwoOneFive leetcode/TwoOneFive.cpp)
+add_executable(OneTwoZeroZero leetcode/OneTwoZeroZero.cpp)
+add_executable(TwoZeroSix leetcode/TwoZeroSix.cpp)

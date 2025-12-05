@@ -74,24 +74,5 @@ public class FiveNineZero {
 
 
     public static void main(String[] args) {
-        FiveNineZero fiveNineZero = new FiveNineZero();
-        Node five = new Node(5, new ArrayList<>());
-        Node six = new Node(6, new ArrayList<>());
-        List<Node> l1 = new ArrayList<>();
-        l1.add(five);
-        l1.add(six);
-        Node node = new Node(3, l1);
-
-        Node two = new Node(2, new ArrayList<>());
-        Node four = new Node(4, new ArrayList<>());
-
-        List<Node> l2 = new ArrayList<>();
-        l2.add(node);
-        l2.add(two);
-        l2.add(four);
-        Node root = new Node(1, l2);
-
-//        fiveNineZero.postorder(root);
-
     }
 }

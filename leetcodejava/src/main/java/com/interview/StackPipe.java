@@ -34,7 +34,7 @@ public class StackPipe {
         } else {
             current.setDown(head);
             head.setUp(current);
-            head = current;Q
+            head = current;
         }
         size++;
     }

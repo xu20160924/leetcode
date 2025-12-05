@@ -10,7 +10,7 @@
 
     <properties>
         <scala.version>2.13.10</scala.version>       <!-- 统一为 Scala 2.13 -->
-        <spark.version>3.3.2</spark.version>         <!-- Spark 3.3.2 适配 Scala 2.13 -->
+        <spark.version>3.5.6</spark.version>         <!-- Spark 3.3.2 适配 Scala 2.13 -->
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -124,51 +124,105 @@ public:
 //        return ans;
 //    }
 
-    int trap(vector<int> & height) {
-        int ans = 0, current = 0;
-        stack<int> st;
-        while (current < height.size()) {
-            while (!st.empty() && height[current] > height[st.top()]) {
-                int top = st.top();
-                st.pop();
-                if (st.empty()) {
-                    break;
+    // int trap(vector<int> & height) {
+    //     int ans = 0, current = 0;
+    //     stack<int> st;
+    //     while (current < height.size()) {
+    //         while (!st.empty() && height[current] > height[st.top()]) {
+    //             int top = st.top();
+    //             st.pop();
+    //             if (st.empty()) {
+    //                 break;
+    //             }
+    //             int distance = current - st.top() - 1;
+    //             int bounded_height = min(height[current], height[st.top()]) - height[top];
+    //             ans += distance * bounded_height;
+    //         }
+    //         st.push(current++);
+    //     }
+    //     return ans;
+    // }
+
+    // int trap(vector<int>& height) {
+    //     int totalRain = 0;
+    //     int j = 0;
+    //     int valleyBlock = 0;
+    //     for (int i = 1; i < height.size(); i++) {
+    //         if (height[i] >= height[j]) {
+    //             int minPeak = min(height[j], height[i]);
+    //             totalRain += (minPeak * (i - j - 1)) - valleyBlock;
+    //             j = i;
+    //             valleyBlock = 0;
+    //         } else {
+    //             valleyBlock += height[i];
+    //         }
+    //     }
+    //
+    //     j = height.size() - 1;
+    //     valleyBlock = 0;
+    //     for (int i = height.size() - 2; i >= 0; i--) {
+    //         if (height[i] > height[j]) {
+    //             int minPeak = min(height[j], height[i]);
+    //             totalRain += (minPeak * (j - i - 1)) - valleyBlock;
+    //             j = i;
+    //             valleyBlock = 0;
+    //         } else {
+    //             valleyBlock += height[i];
+    //         }
+    //     }
+    //     return totalRain;
+    // }
+
+    int trap(vector<int>& nums) {
+        int left = 0, right = nums.size() - 1;
+        int res = 0;
+        int maxLeft = 0, maxRight = 0;
+        while (left <= right) {
+            if (nums[left] <= nums[right]) {
+                if (nums[left] >= maxLeft) {
+                    maxLeft = nums[left];
+                } else {
+                    res += maxLeft - nums[left];
                 }
-                int distance = current - st.top() - 1;
-                int bounded_height = min(height[current], height[st.top()]) - height[top];
-                ans += distance * bounded_height;
+                left++;
+            } else {
+                if (nums[right] >= maxRight) {
+                    maxRight = nums[right];
+                } else {
+                    res += maxRight - nums[right];
+                }
+                right--;
             }
-            st.push(current++);
         }
-        return ans;
+        return res;
     }
 
 };
 
-// int main() {
-//
-//     Solution * solution = new Solution();
-//     vector<int> nums;
-// //    nums.push_back(0);
-// //    nums.push_back(1);
-// //    nums.push_back(0);
-// //    nums.push_back(2);
-// //    nums.push_back(1);
-// //    nums.push_back(0);
-// //    nums.push_back(1);
-// //    nums.push_back(3);
-// //    nums.push_back(2);
-// //    nums.push_back(1);
-// //    nums.push_back(2);
-// //    nums.push_back(1);
-//
-//     nums.push_back(4);
-//     nums.push_back(2);
-//     nums.push_back(0);
-//     nums.push_back(3);
-//     nums.push_back(2);
-//     nums.push_back(5);
-//     // 9
-//
-//     cout <<solution->trap(nums) << endl;
-// }
+int main() {
+
+    Solution * solution = new Solution();
+    vector<int> nums;
+//    nums.push_back(0);
+//    nums.push_back(1);
+//    nums.push_back(0);
+//    nums.push_back(2);
+//    nums.push_back(1);
+//    nums.push_back(0);
+//    nums.push_back(1);
+//    nums.push_back(3);
+//    nums.push_back(2);
+//    nums.push_back(1);
+//    nums.push_back(2);
+//    nums.push_back(1);
+
+    // nums.push_back(4);
+    // nums.push_back(2);
+    // nums.push_back(3);
+
+    nums.push_back(2);
+    nums.push_back(0);
+    nums.push_back(2);
+
+    cout <<solution->trap(nums) << endl;
+}

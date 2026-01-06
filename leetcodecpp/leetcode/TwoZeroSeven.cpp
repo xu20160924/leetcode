@@ -7,11 +7,141 @@
 #include <list>
 #include <deque>
 #include <iostream>
-#include "queue"
+#include <queue>
+#include <set>
 
 using namespace std;
 
 class Solution{
+//public:
+//    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+//        vector<vector<int>> graph = buildGraph(numCourses, prerequisites);
+//        vector<bool> todo(numCourses, false), done(numCourses, false);
+//        for (int i = 0; i < numCourses; i++) {
+//            if (!done[i] && !acyclic(graph, todo, done, i)) {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
+//
+//private:
+//    vector<vector<int>> buildGraph(int numCourses, vector<vector<int>>& prerequisites) {
+//        vector<vector<int>> graph(numCourses);
+//        for (auto p : prerequisites) {
+//            graph[p[1]].push_back(p[0]);
+//        }
+//        return graph;
+//    }
+//
+//    bool acyclic(vector<vector<int>>& graph, vector<bool>& todo, vector<bool>& done, int node) {
+//        if (todo[node]) {
+//            return false;
+//        }
+//        if (done[node]) {
+//            return true;
+//        }
+//        todo[node] = done[node] = true;
+//        for (int v : graph[node]) {
+//            if (!acyclic(graph, todo, done, v)) {
+//                return false;
+//            }
+//        }
+//        todo[node] = false;
+//        return true;
+//    }
+
+// topological sort
+public:
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>> adj(numCourses, vector<int>());
+        vector<int> degree(numCourses, 0);
+        for (auto p : prerequisites) {
+            degree[p[0]]++;
+            adj[p[1]].push_back(p[0]);
+        }
+
+        queue<int> queue;
+        for (int i = 0; i < numCourses; i++) {
+            if (degree[i] == 0) {
+                queue.push(i);
+            }
+        }
+
+        while (!queue.empty()) {
+            int top = queue.front();
+            queue.pop();
+            for (int next : adj[top]) {
+                numCourses--;
+                if (--degree[next] == 0) {
+                    queue.push(next);
+                }
+            }
+        }
+        return numCourses == 0;
+    }
+//
+//        while (!queue.empty()) {
+//            int top = queue.front();
+//            queue.pop_front();
+//            for (int next : graph[top]) {
+//                if (find(queue.begin(), queue.end(),next) != queue.end()) {
+//                    return false;
+//                }
+//                indegree[next]--;
+//                if (indegree[next] == 0) {
+//                    queue.push_back(next);
+//                }
+//            }
+//        }
+//        return true;
+
+
+
+
+//public:
+//    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+//        vector<vector<int> > graph = buildGraph(numCourses, prerequisites);
+//        vector<int> degree = computeIndegrees(graph);
+//        for (int i = 0; i < numCourses; i++) {
+//            int j = 0;
+//            for (; j < numCourses; j++) {
+//                if (!degree[j]) {
+//                    break;
+//                }
+//            }
+//            if (j == numCourses) {
+//                return false;
+//            }
+//            degree[j]--;
+//            for (auto v : graph[j]) {
+//                degree[v]--;
+//            }
+//        }
+//        return true;
+//    }
+//
+//private:
+//    vector<vector<int>> graph;
+//    vector<vector<int>> buildGraph(int numCourses, vector<vector<int>>& prerequisite) {
+//        vector<vector<int>> graph(numCourses);
+//        for (auto p : prerequisite) {
+//            graph[p[1]].push_back(p[0]);
+//        }
+//        return graph;
+//    }
+//
+//    vector<int> computeIndegrees(vector<vector<int> > graph) {
+//        vector<int> degree(graph.size(), 0);
+//        for (auto g : graph) {
+//            for (int v : g) {
+//                degree[v]++;
+//            }
+//        }
+//        return degree;
+//    }
+
+
 //public:
 //    bool canFinish(int numCourses, vector<pair<int, int> > & prerequisite) {
 //        graph g = buildGraph(numCourses, prerequisite);
@@ -83,49 +213,6 @@ class Solution{
 //    }
 
 
-// bfs
-public:
-    bool canFinish(int numCourses, vector<vector<int> > & prerequisites) {
-        graph g = buildGraph(numCourses, prerequisites);
-        vector<int> degrees  = computeIndegress(g);
-        for (int i = 0; i < numCourses; i++) {
-            int j = 0;
-            for (; j < numCourses; j++) {
-                if (!degrees[j]) {
-                    break;
-                }
-            }
-            if (j == numCourses) {
-                return false;
-            }
-            degrees[j]--;
-            for (int v : g[j]) {
-                degrees[v]--;
-            }
-        }
-        return true;
-    }
-
-private:
-    typedef vector<vector<int> > graph;
-    graph buildGraph(int numCourses, vector<vector<int> > & prerequisites) {
-        graph g(numCourses);
-        for (auto p : prerequisites) {
-            g[p[1]].push_back(p[0]);
-        }
-        return g;
-    }
-
-    vector<int> computeIndegress(graph & g) {
-        vector<int> degrees(g.size(), 0);
-        for (auto adj : g) {
-            for (int v : adj) {
-                degrees[v]++;
-            }
-        }
-        return degrees;
-    }
-
 
 // dfs
 //public:
@@ -188,145 +275,58 @@ private:
 //        }
 //        return n == 0;
 //    }
-
-//dfs
-//public:
-//    bool canFinish(int numCourses, vector<vector<int>> & prerequisites) {
-//        graph g = buildGraph(numCourses, prerequisites);
-//        vector<bool> todo (numCourses, false), done(numCourses, false);
-//        for (int i = 0; i < numCourses; ++i) {
-//            if (!done[i] && !acyclic(g, todo, done, i)) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
-//private:
-//    typedef vector<vector<int>> graph;
-//    graph buildGraph(int numCourses, vector<vector<int>> & prerequisites) {
-//        graph g(numCourses);
-//        for (auto p : prerequisites) {
-//            g[p[1]].push_back(p[0]);
-//        }
-//        return g;
-//    }
-//    bool acyclic(graph & g, vector<bool> & todo, vector<bool> done, int node) {
-//        if (todo[node]) {
-//            return false;
-//        }
-//        if (done[node]) {
-//            return true;
-//        }
-//        todo[node] = done[node] = true;
-//        for (int v: g[node]) {
-//            if (!acyclic(g, todo, done, v)) {
-//                return false;
-//            }
-//        }
-//        todo[node] = false;
-//        return true;
-//    }
-
-//public:
-//    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-//        graph g = buildGraph(numCourses, prerequisites);
-//        vector<bool> todo(numCourses, false), done(numCourses, false);
-//        for (int i = 0; i < numCourses; i++) {
-//            if (!done[i] && !acyclic(g, todo, done, i)) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//private:
-//    typedef vector<vector<int>> graph;
-//    graph buildGraph(int numCourses, vector<vector<int>> prerequisites) {
-//        graph g(numCourses);
-//        for (auto p : prerequisites) {
-//            g[p[1]].push_back(p[0]);
-//        }
-//        return g;
-//    }
-//
-//    bool acyclic(graph & g, vector<bool> & todo, vector<bool> & done, int node) {
-//        if (todo[node]) {
-//            return false;
-//        }
-//        if (done[node]) {
-//            return true;
-//        }
-//        todo[node] = done[node] = true;
-//        for (int v : g[node]) {
-//            if (!acyclic(g, todo, done, v)) {
-//                return false;
-//            }
-//        }
-//        todo[node] = false;
-//        return true;
-//    }
 };
 
 
 
-//int main() {
-//    vector<vector<int>> courses;
-//    vector<int> course1, course2, course3, course4, course5, course6, course7, course8;
-//    course1.push_back(5);
-//    course1.push_back(8);
+int main() {
+    vector<vector<int>> courses;
+    vector<int> course1, course2, course3, course4, course5, course6, course7, course8;
+
+    course1.push_back(0);
+    course1.push_back(10);
+
+    course2.push_back(3);
+    course2.push_back(18);
+
+    course3.push_back(5);
+    course3.push_back(5);
+
+    course4.push_back(6);
+    course4.push_back(11);
+
+    course5.push_back(11);
+    course5.push_back(14);
+
+    course6.push_back(13);
+    course6.push_back(11);
+
+    course7.push_back(15);
+    course7.push_back(1);
+
+    course8.push_back(17);
+    course8.push_back(4);
+
+    courses.push_back(course1);
+    courses.push_back(course2);
+    courses.push_back(course3);
+    courses.push_back(course4);
+    courses.push_back(course5);
+    courses.push_back(course6);
+    courses.push_back(course7);
+    courses.push_back(course8);
+
+
+
+
+//    course1.push_back(1);
+//    course1.push_back(0);
 //
-//    course2.push_back(3);
-//    course2.push_back(5);
-//
-//    course3.push_back(1);
-//    course3.push_back(9);
-//
-//    course4.push_back(4);
-//    course4.push_back(5);
-//
-//    course5.push_back(0);
-//    course5.push_back(2);
-//
-//    course6.push_back(1);
-//    course6.push_back(9);
-//
-//    course7.push_back(7);
-//    course7.push_back(8);
-//
-//    course8.push_back(4);
-//    course8.push_back(9);
-//
-//
-//
-//
-////    course2.push_back(0);
-////    course2.push_back(1);
-////    pair<int, int> course1, course2, course3;
-////    course1.first = 1;
-////    course1.second = 0;
-////    course2.first = 1;
-////    course2.second = 2;
-////    course3.first = 0;
-////    course3.second = 1;
-//
+//    course2.push_back(0);
+//    course2.push_back(1);
 //    courses.push_back(course1);
 //    courses.push_back(course2);
-//    courses.push_back(course3);
-//    courses.push_back(course4);
-//    courses.push_back(course5);
-//    courses.push_back(course6);
-//    courses.push_back(course7);
-//    courses.push_back(course8);
-////    courses.push_back(course2);
-//
-////    pair<int, int> pair1, pair2;
-////    pair1.first = 1;
-////    pair1.second = 0;
-////
-////    pair2.first = 0;
-////    pair2.second = 1;
-////    course.push_back(pair1);
-////    course.push_back(pair2);
-//    Solution * solution = new Solution();
-//    cout << solution->canFinish(10, courses) << endl;
-//}
+
+    Solution * solution = new Solution();
+    cout << solution->canFinish(20, courses) << endl;
+}
